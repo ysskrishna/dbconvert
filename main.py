@@ -1,7 +1,6 @@
 import typer
 from rich.console import Console
-from converters.postgres_converter import PostgresConverter
-from converters.mysql_converter import MySQLConverter
+from converters.converter_factory import ConverterFactory
 from writers.sqlite_writer import SQLiteWriter
 from core.enums import DatabaseType
 import os
@@ -36,11 +35,8 @@ def convert(
         if sqlite_dir and not os.path.exists(sqlite_dir):
             os.makedirs(sqlite_dir)
         
-        # Create appropriate converter
-        if source == DatabaseType.POSTGRES.value:
-            converter = PostgresConverter(conn)
-        else:
-            converter = MySQLConverter(conn)
+        # Create converter using factory
+        converter = ConverterFactory.create_converter(source, conn)
         
         # Read source database
         console.print("[cyan]Reading source database...[/cyan]")

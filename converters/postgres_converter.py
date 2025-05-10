@@ -1,5 +1,4 @@
-from .base_converter import BaseConverter
-from typing import Dict, Any
+from converters.base_converter import BaseConverter
 
 class PostgresConverter(BaseConverter):
     def map_column_type(self, col_type: str) -> str:
