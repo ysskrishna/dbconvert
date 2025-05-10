@@ -3,6 +3,7 @@ from rich.console import Console
 from converters.postgres_converter import PostgresConverter
 from converters.mysql_converter import MySQLConverter
 from writers.sqlite_writer import SQLiteWriter
+from core.enums import DatabaseType
 import os
 
 app = typer.Typer()
@@ -14,7 +15,7 @@ def hello(name: str):
 
 @app.command()
 def convert(
-    source: str = typer.Option(..., help="Source database type (postgres or mysql)"),
+    source: str = typer.Option(..., help=f"Source database type ({', '.join(DatabaseType.values())})"),
     conn: str = typer.Option(..., help="Source database connection string"),
     sqlite: str = typer.Option(..., help="Target SQLite database file path")
 ):
@@ -23,7 +24,7 @@ def convert(
     """
     try:
         # Validate source database type
-        if source not in ["postgres", "mysql"]:
+        if source not in DatabaseType.values():
             raise ValueError(f"Unsupported source database type: {source}")
         
         # Validate connection string
@@ -36,7 +37,7 @@ def convert(
             os.makedirs(sqlite_dir)
         
         # Create appropriate converter
-        if source == "postgres":
+        if source == DatabaseType.POSTGRES.value:
             converter = PostgresConverter(conn)
         else:
             converter = MySQLConverter(conn)
