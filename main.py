@@ -1,0 +1,60 @@
+import typer
+from rich.console import Console
+from converters.postgres_converter import PostgresConverter
+from converters.mysql_converter import MySQLConverter
+from writers.sqlite_writer import SQLiteWriter
+import os
+
+app = typer.Typer()
+console = Console()
+
+@app.command()
+def hello(name: str):
+    print(f"Hello {name}")
+
+@app.command()
+def convert(
+    source: str = typer.Option(..., help="Source database type (postgres or mysql)"),
+    conn: str = typer.Option(..., help="Source database connection string"),
+    sqlite: str = typer.Option(..., help="Target SQLite database file path")
+):
+    """
+    Convert a PostgreSQL or MySQL database to SQLite.
+    """
+    try:
+        # Validate source database type
+        if source not in ["postgres", "mysql"]:
+            raise ValueError(f"Unsupported source database type: {source}")
+        
+        # Validate connection string
+        if not conn:
+            raise ValueError("Connection string cannot be empty")
+        
+        # Validate SQLite path
+        sqlite_dir = os.path.dirname(sqlite)
+        if sqlite_dir and not os.path.exists(sqlite_dir):
+            os.makedirs(sqlite_dir)
+        
+        # Create appropriate converter
+        if source == "postgres":
+            converter = PostgresConverter(conn)
+        else:
+            converter = MySQLConverter(conn)
+        
+        # Read source database
+        console.print("[cyan]Reading source database...[/cyan]")
+        tables = converter.read_all_tables()
+        
+        # Write to SQLite
+        console.print("[cyan]Writing to SQLite database...[/cyan]")
+        writer = SQLiteWriter(sqlite)
+        writer.write_all_tables(tables)
+        
+        console.print("[green]✅ Conversion completed successfully![/green]")
+        
+    except Exception as e:
+        console.print(f"[red]Error: {str(e)}[/red]")
+        raise typer.Exit(1)
+
+if __name__ == "__main__":
+    app()
