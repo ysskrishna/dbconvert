@@ -1,4 +1,4 @@
-from converters.base_converter import BaseConverter
+from dbconvert.converters.base_converter import BaseConverter
 
 class MySQLConverter(BaseConverter):
     def map_column_type(self, col_type: str) -> str:

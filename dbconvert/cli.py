@@ -1,8 +1,8 @@
 import typer
 from rich.console import Console
-from converters.converter_factory import ConverterFactory
-from writers.sqlite_writer import SQLiteWriter
-from core.enums import DatabaseType
+from dbconvert.converters.converter_factory import ConverterFactory
+from dbconvert.writers.sqlite_writer import SQLiteWriter
+from dbconvert.core.enums import DatabaseType
 import os
 
 app = typer.Typer()

@@ -1,8 +1,8 @@
 from typing import Optional
-from converters.base_converter import BaseConverter
-from converters.postgres_converter import PostgresConverter
-from converters.mysql_converter import MySQLConverter
-from core.enums import DatabaseType
+from dbconvert.converters.base_converter import BaseConverter
+from dbconvert.converters.postgres_converter import PostgresConverter
+from dbconvert.converters.mysql_converter import MySQLConverter
+from dbconvert.core.enums import DatabaseType
 
 class ConverterFactory:
     registry = {
