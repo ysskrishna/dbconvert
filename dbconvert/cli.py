@@ -8,9 +8,14 @@ import os
 app = typer.Typer()
 console = Console()
 
-@app.command()
-def hello(name: str):
-    print(f"Hello {name}")
+@app.command(name="supported-databases")
+def supported_databases():
+    """
+    Show supported database types for conversion.
+    """
+    console.print("[cyan]Supported database types:[/cyan]")
+    for db_type in DatabaseType.values():
+        console.print(f"  • {db_type}")
 
 @app.command()
 def convert(
