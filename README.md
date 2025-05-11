@@ -1,4 +1,10 @@
-# DbLite
+# DbConvert
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0.41-blue.svg)](https://www.sqlalchemy.org/)
+[![Typer](https://img.shields.io/badge/Typer-0.15.4-blue.svg)](https://typer.tiangolo.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 Convert your PostgreSQL or MySQL database to an SQLite file with ease.
 
@@ -13,7 +19,7 @@ Convert your PostgreSQL or MySQL database to an SQLite file with ease.
 
 ## Installation
 
-You can install DbLite using pip:
+You can install DbConvert using pip:
 
 ```bash
 pip install dbconvert
