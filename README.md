@@ -1,3 +1,3 @@
-# DbLite
+# DBConvert
 
 Convert your PostgreSQL or MySQL database to an SQLite file with ease.  
