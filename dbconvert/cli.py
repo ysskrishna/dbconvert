@@ -8,6 +8,18 @@ import os
 app = typer.Typer()
 console = Console()
 
+@app.command(name="gui")
+def launch_gui():
+    """
+    Launch the graphical user interface.
+    """
+    try:
+        from dbconvert.gui import main
+        main()
+    except ImportError:
+        console.print("[red]Error: Tkinter is not available. Please ensure Python is installed with Tkinter support.[/red]")
+        raise typer.Exit(1)
+
 @app.command(name="supported-databases")
 def supported_databases():
     """
