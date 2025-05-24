@@ -3,7 +3,6 @@ from tkinter import ttk, filedialog, messagebox
 from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
-import os
 
 class DbConvertGUI:
     def __init__(self, root):
