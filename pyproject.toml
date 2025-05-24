@@ -41,4 +41,4 @@ Issues = "https://github.com/ysskrishna/dbconvert/issues"
 dbconvert = "dbconvert.cli:app"
 
 [tool.setuptools]
-package-dir = {"" = "dbconvert"}
+package-dir = {"dbconvert" = "dbconvert"}

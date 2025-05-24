@@ -50,6 +50,7 @@ create_release() {
     echo "📥 Updating main branch..."
     git checkout main
     git pull origin main
+    git push origin main
     
     # Create tag
     echo "🏷️ Creating release tag 'v$version'..."
