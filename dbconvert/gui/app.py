@@ -4,18 +4,22 @@ from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
 
+
 class DbConvertGUI:
-    def __init__(self, root):
-        self.root = root
+    def __init__(self):
+        self.root = tk.Tk()
         self.root.title("DbConvert")
-        self.root.geometry("600x400")
+        self.root.minsize(600, 400)
         
+        self.setup_ui()
+
+    def setup_ui(self):
         # Create main frame
-        main_frame = ttk.Frame(root, padding="10")
+        main_frame = ttk.Frame(self.root, padding="10")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Database type selection
-        ttk.Label(main_frame, text="Source Database Type:").grid(row=0, column=0, sticky=tk.W, pady=5)
+        ttk.Label(main_frame, text="Database Type:").grid(row=0, column=0, sticky=tk.W, pady=5)
         self.db_type = tk.StringVar(value=DatabaseType.values()[0])
         db_combo = ttk.Combobox(main_frame, textvariable=self.db_type, values=DatabaseType.values(), state="readonly")
         db_combo.grid(row=0, column=1, sticky=(tk.W, tk.E), pady=5)
@@ -46,8 +50,8 @@ class DbConvertGUI:
         
         # Configure grid weights
         main_frame.columnconfigure(1, weight=1)
-        root.columnconfigure(0, weight=1)
-        root.rowconfigure(0, weight=1)
+        self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(0, weight=1)
 
     def browse_sqlite(self):
         filename = filedialog.asksaveasfilename(
@@ -94,11 +98,13 @@ class DbConvertGUI:
             self.progress.stop()
             self.status_var.set("Error occurred during conversion")
             messagebox.showerror("Error", str(e))
+    
+    def mainloop(self):
+        self.root.mainloop()
 
 def main():
-    root = tk.Tk()
-    app = DbConvertGUI(root)
-    root.mainloop()
+    app = DbConvertGUI()
+    app.mainloop()
 
 if __name__ == "__main__":
     main() 
