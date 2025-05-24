@@ -42,7 +42,7 @@ Commands:
   supported-databases  Show supported database types
 
 Options for convert:
-  --source TEXT    Source database type (postgresql, mysql)  [required]
+  --source TEXT    Source database type (postgres, mysql)  [required]
   --conn TEXT      Source database connection string         [required]
   --sqlite TEXT    Target SQLite database file path         [required]
   --help          Show this help message and exit
@@ -64,7 +64,7 @@ mysql://[user[:password]@][host][:port][/dbname]
 
 1. Convert a PostgreSQL database:
 ```bash
-dbconvert convert --source postgresql --conn "postgresql://user:password@dbhost:5432/mydb" --sqlite mydb.sqlite
+dbconvert convert --source postgres --conn "postgresql://user:password@dbhost:5432/mydb" --sqlite mydb.sqlite
 ```
 
 1. Convert a MySQL database:
