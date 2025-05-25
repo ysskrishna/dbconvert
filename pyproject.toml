@@ -53,4 +53,4 @@ dbconvert-gui = "dbconvert.gui.app:main"
 
 [tool.setuptools]
 package-dir = {"dbconvert" = "dbconvert"}
-package-data = { "dbconvert" = ["assets/*.png"] }
+package-data = { "dbconvert.gui" = ["assets/*.png"] }
