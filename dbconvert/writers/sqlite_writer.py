@@ -2,8 +2,7 @@ import sqlite3
 from typing import Dict, Any
 from rich.progress import Progress
 from rich.console import Console
-
-console = Console()
+from dbconvert.core.utils import console
 
 class SQLiteWriter:
     def __init__(self, db_path: str):

@@ -1,12 +1,11 @@
 import typer
-from rich.console import Console
+from dbconvert.core.utils import console
 from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
 import os
 
 app = typer.Typer()
-console = Console()
 
 @app.command(name="gui")
 def launch_gui():
@@ -16,8 +15,8 @@ def launch_gui():
     try:
         from dbconvert.gui.app import main
         main()
-    except ImportError:
-        console.print("[red]Error: Tkinter is not available. Please ensure Python is installed with Tkinter support.[/red]")
+    except Exception as e:
+        console.print(f"[red]Error: {str(e)}[/red]")
         raise typer.Exit(1)
 
 @app.command(name="supported-databases")

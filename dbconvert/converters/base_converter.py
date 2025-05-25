@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
-from rich.console import Console
-
-console = Console()
+from dbconvert.core.utils import console
 
 class BaseConverter:
     def __init__(self, conn_str: str):
