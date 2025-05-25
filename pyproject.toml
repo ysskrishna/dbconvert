@@ -29,11 +29,12 @@ dependencies = [
   "SQLAlchemy==2.0.41",
   "psycopg2-binary==2.9.10",
   "PyMySQL==1.1.1",
+  "tomli; python_version < '3.11'",
 ]
 
 [project.optional-dependencies]
 gui = [
-    "Pillow>=10.0.0",  # For image handling in GUI
+  "Pillow>=10.0.0",  # For image handling in GUI
 ]
 
 [project.urls]
@@ -41,6 +42,10 @@ Homepage = "https://github.com/ysskrishna/dbconvert"
 Documentation = "https://github.com/ysskrishna/dbconvert#readme"
 Repository = "https://github.com/ysskrishna/dbconvert.git"
 Issues = "https://github.com/ysskrishna/dbconvert/issues"
+
+[project.internalurls]
+author_name = "ysskrishna"
+author_linkedin = "https://linkedin.com/in/ysskrishna"
 
 [project.scripts]
 dbconvert = "dbconvert.cli:app"

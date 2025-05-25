@@ -5,16 +5,20 @@ from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
 from dbconvert.core.loggingsetup import LoggerManager
 import os
+from importlib.metadata import version
+from dbconvert.core.metadata import load_project_metadata
 from PIL import Image, ImageTk
 
 logger = LoggerManager.get_logger()
 
 class DbConvertGUI:
     def __init__(self):
+        self.current_version = version("dbconvert")
+        self.project_metadata = load_project_metadata()
         self.root = tk.Tk()
-        self.root.title("DbConvert")
+        self.root.title(f"DbConvert v{self.current_version}")
         self.root.minsize(600, 400)
-
+        
         self.setup_window_icon()
         self.setup_ui()
         self.setup_logging()
