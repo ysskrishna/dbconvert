@@ -1,11 +1,12 @@
 import typer
-from dbconvert.core.utils import console
+from dbconvert.core.loggingsetup import LoggerManager
 from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
 import os
 
 app = typer.Typer()
+logger = LoggerManager.get_logger()
 
 @app.command(name="gui")
 def launch_gui():
@@ -16,7 +17,7 @@ def launch_gui():
         from dbconvert.gui.app import main
         main()
     except Exception as e:
-        console.print(f"[red]Error: {str(e)}[/red]")
+        logger.error(f"Error: {str(e)}")
         raise typer.Exit(1)
 
 @app.command(name="supported-databases")
@@ -24,9 +25,9 @@ def supported_databases():
     """
     Show supported database types for conversion.
     """
-    console.print("[cyan]Supported database types:[/cyan]")
+    logger.info("Supported database types:")
     for db_type in DatabaseType.values():
-        console.print(f"  • {db_type}")
+        logger.info(f"  • {db_type}")
 
 @app.command()
 def convert(
@@ -55,18 +56,18 @@ def convert(
         converter = ConverterFactory.create_converter(source, conn)
         
         # Read source database
-        console.print("[cyan]Reading source database...[/cyan]")
+        logger.info("Reading source database...")
         tables = converter.read_all_tables()
         
         # Write to SQLite
-        console.print("[cyan]Writing to SQLite database...[/cyan]")
+        logger.info("Writing to SQLite database...")
         writer = SQLiteWriter(sqlite)
         writer.write_all_tables(tables)
         
-        console.print("[green]✅ Conversion completed successfully![/green]")
+        logger.info("✅ Conversion completed successfully!")
         
     except Exception as e:
-        console.print(f"[red]Error: {str(e)}[/red]")
+        logger.error(f"Error: {str(e)}")
         raise typer.Exit(1)
 
 if __name__ == "__main__":

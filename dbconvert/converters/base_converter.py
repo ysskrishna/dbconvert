@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, inspect, text
 from typing import Dict, Any
-from dbconvert.core.utils import console
+from dbconvert.core.loggingsetup import LoggerManager
+
+logger = LoggerManager.get_logger()
 
 class BaseConverter:
     def __init__(self, conn_str: str):
@@ -12,7 +14,7 @@ class BaseConverter:
         tables = {}
         with self.engine.connect() as conn:
             for table_name in self.inspector.get_table_names():
-                console.print(f"[yellow]Reading table: {table_name}[/yellow]")
+                logger.info(f"Reading table: {table_name}")
                 
                 # Get column information
                 columns = self.inspector.get_columns(table_name)

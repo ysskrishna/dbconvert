@@ -1,8 +1,9 @@
 import sqlite3
 from typing import Dict, Any
 from rich.progress import Progress
-from rich.console import Console
-from dbconvert.core.utils import console
+from dbconvert.core.loggingsetup import LoggerManager
+
+logger = LoggerManager.get_logger()
 
 class SQLiteWriter:
     def __init__(self, db_path: str):
@@ -18,7 +19,7 @@ class SQLiteWriter:
             task = progress.add_task("[cyan]Writing tables...", total=len(tables))
             
             for table_name, meta in tables.items():
-                console.print(f"[yellow]Creating table: {table_name}[/yellow]")
+                logger.info(f"Creating table: {table_name}")
                 
                 # Create table with columns
                 columns = meta["columns"]
@@ -63,9 +64,9 @@ class SQLiteWriter:
                 try:
                     cursor.execute(fk_sql)
                 except sqlite3.OperationalError as e:
-                    console.print(f"[red]Warning: Could not add foreign key constraint: {str(e)}[/red]")
+                    logger.warning(f"Could not add foreign key constraint: {str(e)}")
         
         self.conn.commit()
         self.conn.close()
         
-        console.print(f"[green]Successfully wrote database to: {self.db_path}[/green]") 
+        logger.info(f"Successfully wrote database to: {self.db_path}") 
