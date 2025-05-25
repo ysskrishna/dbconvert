@@ -62,7 +62,11 @@ class DbConvertGUI:
         ttk.Button(path_frame, text="Browse", command=self.browse_sqlite).pack(side=tk.RIGHT, padx=(5,0))
         
         # Convert button
-        ttk.Button(main_frame, text="Convert", command=self.convert).grid(row=3, column=0, sticky=tk.W, pady=5)
+        button_frame = ttk.Frame(main_frame)
+        button_frame.grid(row=3, column=0, columnspan=2, sticky=tk.W, pady=5)
+        ttk.Button(button_frame, text="Convert", command=self.convert).pack(side=tk.LEFT, padx=(0,5))
+        ttk.Button(button_frame, text="Reset", command=self.reset).pack(side=tk.LEFT, padx=(0,5))
+        ttk.Button(button_frame, text="Clear Output", command=self.clear_output).pack(side=tk.LEFT)
         
         # Configure grid weights
         main_frame.columnconfigure(1, weight=1)
@@ -77,6 +81,16 @@ class DbConvertGUI:
         )
         if filename:
             self.sqlite_path.set(filename)
+
+    def reset(self):
+        """Reset all input fields to their default values"""
+        self.db_type.set(DatabaseType.values()[0])
+        self.conn_string.set("")
+        self.sqlite_path.set("")
+
+    def clear_output(self):
+        """Clear the output text area"""
+        self.output_text.delete(1.0, tk.END)
 
     def convert(self):
         logger = LoggerManager.get_logger()
