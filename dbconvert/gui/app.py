@@ -50,10 +50,6 @@ class DbConvertGUI:
         ttk.Entry(path_frame, textvariable=self.sqlite_path, width=40).pack(side=tk.LEFT, fill=tk.X, expand=True)
         ttk.Button(path_frame, text="Browse", command=self.browse_sqlite).pack(side=tk.RIGHT, padx=5)
         
-        # Progress bar
-        self.progress = ttk.Progressbar(main_frame, mode='indeterminate')
-        self.progress.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=20)
-        
         # Convert button
         ttk.Button(main_frame, text="Convert", command=self.convert).grid(row=4, column=0, columnspan=2, pady=10)
         
@@ -84,8 +80,6 @@ class DbConvertGUI:
                 messagebox.showerror("Error", "Please select a SQLite file path")
                 return
 
-            # Start progress bar
-            self.progress.start()
             self.status_var.set("Converting...")
             self.root.update()
 
@@ -103,12 +97,10 @@ class DbConvertGUI:
             writer.write_all_tables(tables)
 
             # Show success message
-            self.progress.stop()
             self.status_var.set("Conversion completed successfully!")
             messagebox.showinfo("Success", "Database conversion completed successfully!")
 
         except Exception as e:
-            self.progress.stop()
             self.status_var.set("Error occurred during conversion")
             messagebox.showerror("Error", str(e))
     
