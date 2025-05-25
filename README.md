@@ -98,6 +98,11 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e .
 ```
 
+4. Install development dependencies with gui:
+```
+pip install -e ".[gui]"
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -31,6 +31,11 @@ dependencies = [
   "PyMySQL==1.1.1",
 ]
 
+[project.optional-dependencies]
+gui = [
+    "Pillow>=10.0.0",  # For image handling in GUI
+]
+
 [project.urls]
 Homepage = "https://github.com/ysskrishna/dbconvert"
 Documentation = "https://github.com/ysskrishna/dbconvert#readme"
@@ -39,6 +44,8 @@ Issues = "https://github.com/ysskrishna/dbconvert/issues"
 
 [project.scripts]
 dbconvert = "dbconvert.cli:app"
+dbconvert-gui = "dbconvert.gui.app:main"
 
 [tool.setuptools]
 package-dir = {"dbconvert" = "dbconvert"}
+package-data = { "dbconvert" = ["assets/*.png"] }

@@ -3,15 +3,28 @@ from tkinter import ttk, filedialog, messagebox
 from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
-
+import os
+from PIL import Image, ImageTk
 
 class DbConvertGUI:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("DbConvert")
         self.root.minsize(600, 400)
-        
+
+        self.setup_window_icon()
         self.setup_ui()
+    
+    def setup_window_icon(self):
+        logo_path = os.path.join(os.path.dirname(__file__), "assets", "logo.png")
+        if os.path.exists(logo_path):
+            try:
+                icon = Image.open(logo_path)
+                icon = icon.resize((32, 32), Image.Resampling.LANCZOS)
+                icon_photo = ImageTk.PhotoImage(icon)
+                self.root.iconphoto(True, icon_photo)
+            except Exception as e:
+                print(f"Could not set window icon: {str(e)}")   
 
     def setup_ui(self):
         # Create main frame
