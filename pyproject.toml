@@ -43,7 +43,7 @@ Documentation = "https://github.com/ysskrishna/dbconvert#readme"
 Repository = "https://github.com/ysskrishna/dbconvert.git"
 Issues = "https://github.com/ysskrishna/dbconvert/issues"
 
-[project.internalurls]
+[tool.internalurls]
 author_name = "ysskrishna"
 author_linkedin = "https://linkedin.com/in/ysskrishna"
 

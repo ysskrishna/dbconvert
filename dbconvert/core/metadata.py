@@ -9,13 +9,13 @@ try:
 except ImportError:
     raise ImportError("tomli is required for Python < 3.11")
 
-def load_project_metadata() -> Dict[str, Any]:
-    """Load project metadata from pyproject.toml"""
+def load_pyproject_metadata() -> Dict[str, Any]:
+    """Load metadata from pyproject.toml"""
     try:
         with open("pyproject.toml", "rb") as f:
             data = tomllib.load(f)
             
-        return data.get("project", {})
+        return data
     except FileNotFoundError:
         raise FileNotFoundError("pyproject.toml not found in the current directory")
     except Exception as e:
