@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-app = typer.Typer()
+app = typer.Typer(help="Convert SQL databases to SQLite")
 logger = LoggerManager.get_logger()
 
 def print_banner(version, author, author_url, repo):
@@ -29,9 +29,9 @@ def print_banner(version, author, author_url, repo):
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context):
     metadata = load_pyproject_metadata()
-    version = metadata.get("project", {}).get("version")
-    repo = metadata.get("project", {}).get("urls", {}).get("Repository")
-    internal_urls = metadata.get("tool", {}).get("internalurls", {})
+    version = metadata.get("version")
+    repo = metadata.get("repository")
+    internal_urls = metadata.get("internalurls", {})
     author = f"{internal_urls.get('author_name')}"
     author_url = f"{internal_urls.get('author_github')}"
     print_banner(version, author, author_url, repo)
