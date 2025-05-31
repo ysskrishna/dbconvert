@@ -51,7 +51,6 @@ author_linkedin = "https://linkedin.com/in/ysskrishna"
 
 [project.scripts]
 dbconvert = "dbconvert.cli:app"
-dbconvert-gui = "dbconvert.gui.app:main"
 
 [tool.setuptools]
 package-dir = {"dbconvert" = "dbconvert"}

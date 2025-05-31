@@ -44,8 +44,12 @@ def launch_gui():
     Launch the graphical user interface.
     """
     try:
+        import PIL
         from dbconvert.gui.app import main
         main()
+    except ImportError:
+        logger.error("The GUI requires extra dependencies. Please install with: \npip install dbconvert[gui]")
+        raise typer.Exit(1)
     except Exception as e:
         logger.error(f"Error: {str(e)}")
         raise typer.Exit(1)
