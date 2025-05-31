@@ -4,9 +4,39 @@ from dbconvert.converters.converter_factory import ConverterFactory
 from dbconvert.writers.sqlite_writer import SQLiteWriter
 from dbconvert.core.enums import DatabaseType
 import os
+from dbconvert.core.metadata import load_pyproject_metadata
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
 
 app = typer.Typer()
 logger = LoggerManager.get_logger()
+
+def print_banner(version, author, author_url, repo):
+    console = Console()
+    banner_text = Text()
+    banner_text.append("\n██████╗ ██████╗  ██████╗ ██████╗ ███╗   ██╗██╗   ██╗███████╗██████╗ ████████╗", style="bold blue")
+    banner_text.append("\n██╔══██╗██╔══██╗██╔════╝██╔═══██╗████╗  ██║██║   ██║██╔════╝██╔══██╗╚══██╔══╝", style="bold blue")
+    banner_text.append("\n██║  ██║██████╔╝██║     ██║   ██║██╔██╗ ██║██║   ██║█████╗  ██████╔╝   ██║   ", style="bold blue")
+    banner_text.append("\n██║  ██║██╔══██╗██║     ██║   ██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██╔══██╗   ██║   ", style="bold blue")
+    banner_text.append("\n██████╔╝██████╔╝╚██████╗╚██████╔╝██║ ╚████║ ╚████╔╝ ███████╗██║  ██║   ██║   ", style="bold blue")
+    banner_text.append("\n╚═════╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝   \n", style="bold blue")
+    banner_text.append(f"Version : {version}\n", style="bold blue")
+    banner_text.append(f"Author  : {author} ({author_url})\n", style="magenta")
+    banner_text.append(f"Repo    : {repo}", style="green")
+    console.print(Panel(banner_text, expand=False, border_style="blue", title="Welcome", title_align="left"))
+
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context):
+    metadata = load_pyproject_metadata()
+    version = metadata.get("project", {}).get("version")
+    repo = metadata.get("project", {}).get("urls", {}).get("Repository")
+    internal_urls = metadata.get("tool", {}).get("internalurls", {})
+    author = f"{internal_urls.get('author_name')}"
+    author_url = f"{internal_urls.get('author_github')}"
+    print_banner(version, author, author_url, repo)
+    if ctx.invoked_subcommand is None:
+        logger.info("No command provided. Use --help for usage.")
 
 @app.command(name="gui")
 def launch_gui():

@@ -44,7 +44,9 @@ Repository = "https://github.com/ysskrishna/dbconvert.git"
 Issues = "https://github.com/ysskrishna/dbconvert/issues"
 
 [tool.internalurls]
-author_name = "ysskrishna"
+author_username = "ysskrishna"
+author_name = "Y. Siva Sai Krishna"
+author_github = "https://github.com/ysskrishna"
 author_linkedin = "https://linkedin.com/in/ysskrishna"
 
 [project.scripts]
