@@ -8,6 +8,7 @@ import os
 from importlib.metadata import version
 from dbconvert.core.metadata import load_pyproject_metadata
 from PIL import Image, ImageTk
+import webbrowser
 
 logger = LoggerManager.get_logger()
 
@@ -15,7 +16,6 @@ class DbConvertGUI:
     def __init__(self):
         self.current_version = version("dbconvert")
         self.metadata = load_pyproject_metadata()
-        print(self.metadata)
         self.root = tk.Tk()
         self.root.title(f"DbConvert v{self.current_version}")
         self.root.minsize(600, 400)
@@ -23,6 +23,7 @@ class DbConvertGUI:
         self.setup_window_icon()
         self.setup_ui()
         self.setup_logging()
+        self.setup_footer()
     
     def setup_window_icon(self):
         logo_path = os.path.join(os.path.dirname(__file__), "assets", "logo.png")
@@ -78,6 +79,31 @@ class DbConvertGUI:
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
         self.root.rowconfigure(5, weight=1)
+
+    def setup_footer(self):
+        footer = tk.Frame(self.root, bg="#f0f0f0", pady=5)
+        footer.grid(row=6, column=0, columnspan=3, sticky="ew")
+        self.root.grid_rowconfigure(6, weight=0)
+        self.root.grid_columnconfigure(0, weight=1)
+
+        internal_urls = self.metadata.get("internalurls", {})
+        author_username = internal_urls.get("author_username", "Author")
+        author_github = internal_urls.get("author_github", "#")
+        project_name = self.metadata.get("name", "Project")
+        project_repo = self.metadata.get("repository", "#")
+
+        author_link = tk.Label(footer, text=author_username, fg="blue", cursor="hand2", bg="#f0f0f0", font=(None, 9, "underline"))
+        separator = tk.Label(footer, text=" | ", bg="#f0f0f0")
+        repo_link = tk.Label(footer, text=project_name, fg="blue", cursor="hand2", bg="#f0f0f0", font=(None, 9, "underline"))
+
+        # Pack all to the left
+        author_link.pack(side="left", padx=(10, 2))
+        separator.pack(side="left", padx=(2, 2))
+        repo_link.pack(side="left")
+
+        # Click events
+        author_link.bind("<Button-1>", lambda e: webbrowser.open_new(author_github))
+        repo_link.bind("<Button-1>", lambda e: webbrowser.open_new(project_repo))
 
     def browse_sqlite(self):
         filename = filedialog.asksaveasfilename(
