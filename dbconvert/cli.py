@@ -34,7 +34,7 @@ def main(ctx: typer.Context):
     repo = metadata.get("repository")
     internal_urls = metadata.get("internalurls", {})
     author = f"{internal_urls.get('author_name')}"
-    author_url = f"{internal_urls.get('author_github')}"
+    author_url = f"{internal_urls.get('author_linkedin')}"
     print_banner(version, author, author_url, repo)
     if ctx.invoked_subcommand is None:
         logger.info("No command provided. Use --help for usage.")

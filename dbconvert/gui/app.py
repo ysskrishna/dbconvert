@@ -88,7 +88,7 @@ class DbConvertGUI:
 
         internal_urls = self.metadata.get("internalurls", {})
         author_username = internal_urls.get("author_username", "Author")
-        author_github = internal_urls.get("author_github", "#")
+        author_url = internal_urls.get("author_linkedin", "#")
         project_name = self.metadata.get("name", "Project")
         project_repo = self.metadata.get("repository", "#")
 
@@ -102,7 +102,7 @@ class DbConvertGUI:
         repo_link.pack(side="left")
 
         # Click events
-        author_link.bind("<Button-1>", lambda e: webbrowser.open_new(author_github))
+        author_link.bind("<Button-1>", lambda e: webbrowser.open_new(author_url))
         repo_link.bind("<Button-1>", lambda e: webbrowser.open_new(project_repo))
 
     def browse_sqlite(self):
