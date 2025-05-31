@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-app = typer.Typer(help="Convert SQL databases to SQLite")
+app = typer.Typer(help="Convert SQL databases to SQLite. Supports both Command-Line and Graphical User Interfaces.")
 logger = LoggerManager.get_logger()
 
 def print_banner(version, author, author_url, repo):
@@ -23,7 +23,8 @@ def print_banner(version, author, author_url, repo):
     banner_text.append("\n╚═════╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝   \n", style="bold blue")
     banner_text.append(f"Version : {version}\n", style="bold blue")
     banner_text.append(f"Author  : {author} ({author_url})\n", style="magenta")
-    banner_text.append(f"Repo    : {repo}", style="green")
+    banner_text.append(f"Repo    : {repo}\n", style="green")
+    banner_text.append("\nDbConvert supports both a modern Command-Line Interface (CLI) and a user-friendly Graphical User Interface (GUI).", style="bold yellow")
     console.print(Panel(banner_text, expand=False, border_style="blue", title="Welcome", title_align="left"))
 
 @app.callback(invoke_without_command=True)
@@ -41,7 +42,8 @@ def main(ctx: typer.Context):
 @app.command(name="gui")
 def launch_gui():
     """
-    Launch the graphical user interface.
+    Launch the graphical user interface (GUI) for DbConvert.
+    The GUI provides a simple, no-code way to convert your databases.
     """
     try:
         import PIL
@@ -51,7 +53,7 @@ def launch_gui():
         logger.error("The GUI requires extra dependencies. Please install with: \npip install dbconvert[gui]")
         raise typer.Exit(1)
     except Exception as e:
-        logger.error(f"Error: {str(e)}")
+        logger.error(f"Error launching GUI: {str(e)}")
         raise typer.Exit(1)
 
 @app.command(name="supported-databases")

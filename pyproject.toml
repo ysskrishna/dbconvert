@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dbconvert"
 version = "1.1.1"
-description = "A CLI tool to convert PostgreSQL/MySQL databases to SQLite"
+description = "A CLI and GUI tool to convert PostgreSQL/MySQL databases to SQLite"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [
@@ -22,7 +22,7 @@ classifiers = [
   "Topic :: Database",
   "Topic :: Software Development :: Libraries :: Python Modules"
 ]
-keywords = ["database", "sqlite", "postgresql", "mysql", "conversion", "cli"]
+keywords = ["database", "sqlite", "postgresql", "mysql", "conversion", "cli", "gui", "tkinter", "desktop"]
 dependencies = [
   "typer==0.15.4",
   "rich==14.0.0",
