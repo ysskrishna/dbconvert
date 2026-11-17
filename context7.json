@@ -1,0 +1,31 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "url": "https://context7.com/ysskrishna/dbconvert",
+  "public_key": "pk_VesXVq9WjBT8ecKU9XIZz",
+  "projectTitle": "dbconvert",
+  "description": "Python CLI and GUI that converts a PostgreSQL or MySQL database into an SQLite file.",
+  "excludeFolders": [
+    "archive",
+    "archived",
+    "old",
+    "deprecated",
+    "legacy",
+    "tests",
+    ".github"
+  ],
+  "excludeFiles": [
+    "CHANGELOG.md",
+    "changelog.md",
+    "LICENSE.md",
+    "license.md",
+    "CODE_OF_CONDUCT.md",
+    "NEWS.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "AGENTS.md",
+    "RELEASE.md"
+  ],
+  "rules": [
+    "Run dbconvert convert --source postgres|mysql --conn <connection string> --sqlite <output file>; dbconvert gui needs pip install \"dbconvert[gui]\"."
+  ]
+}
