@@ -4,6 +4,8 @@
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0.41-blue.svg)](https://www.sqlalchemy.org/)
 [![Typer](https://img.shields.io/badge/Typer-0.15.4-blue.svg)](https://typer.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Context7](https://img.shields.io/badge/Context7-docs-18181B)](https://context7.com/ysskrishna/dbconvert)
+[![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-ask-18181B)](https://deepwiki.com/ysskrishna/dbconvert)
 
 
 Convert your PostgreSQL or MySQL database to an SQLite file with ease. DbConvert provides both a modern Command-Line Interface (CLI) and a user-friendly Graphical User Interface (GUI).
