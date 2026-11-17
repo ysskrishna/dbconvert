@@ -4,6 +4,9 @@
 [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0.41-blue.svg)](https://www.sqlalchemy.org/)
 [![Typer](https://img.shields.io/badge/Typer-0.15.4-blue.svg)](https://typer.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI](https://img.shields.io/pypi/v/dbconvert)](https://pypi.org/project/dbconvert/)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/dbconvert?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=BLUE&left_text=downloads)](https://pepy.tech/projects/dbconvert)
+[![Author site](https://img.shields.io/badge/author-ysskrishna.space-informational)](https://ysskrishna.space)
 [![Context7](https://img.shields.io/badge/Context7-docs-18181B)](https://context7.com/ysskrishna/dbconvert)
 [![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-ask-18181B)](https://deepwiki.com/ysskrishna/dbconvert)
 
@@ -42,7 +45,10 @@ pip install dbconvert[gui]
 
 ## Usage
 
-### Command Line Interface (CLI)
+<a id="command-line-interface-cli"></a>
+
+<details>
+<summary><b>Command Line Interface (CLI)</b></summary>
 
 ```bash
 dbconvert [COMMAND] [OPTIONS]
@@ -93,7 +99,12 @@ dbconvert supported-databases
 dbconvert gui
 ```
 
-### Graphical User Interface (GUI)
+</details>
+
+<a id="graphical-user-interface-gui"></a>
+
+<details>
+<summary><b>Graphical User Interface (GUI)</b></summary>
 
 After installing with GUI support, launch the GUI with:
 
@@ -105,7 +116,12 @@ dbconvert gui
 - Click "Convert" to start the conversion process.
 - The GUI provides progress and error reporting, and allows you to reset or clear output easily.
 
+</details>
+
 ## Development
+
+<details>
+<summary><b>Set up a development environment</b></summary>
 
 ### Setup Development Environment
 
@@ -131,14 +147,43 @@ pip install -e .
 pip install -e ".[gui]"
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+</details>
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Built and maintained by
+
+DbConvert is built and maintained by:
+
+| | Name | GitHub | Role |
+|---|------|--------|------|
+| <img src="https://github.com/ysskrishna.png?size=120" width="60" height="60" alt="Y. Siva Sai Krishna"> | **Y. Siva Sai Krishna** | [@ysskrishna](https://github.com/ysskrishna) | Creator |
+
+## Changelog
+
+See [CHANGELOG](CHANGELOG.md) for release history.
+
 ## Support
 
-If you encounter any issues or have questions, please [open an issue](https://github.com/ysskrishna/dbconvert/issues) on GitHub.  
+If you find this library helpful:
+
+- ⭐ Star the repository
+- 🐛 [Report issues](https://github.com/ysskrishna/dbconvert/issues)
+- 🔀 Submit pull requests
+- 💝 [Sponsor on GitHub](https://github.com/sponsors/ysskrishna)
+
+## License
+
+MIT © [Y. Siva Sai Krishna](https://github.com/ysskrishna) — see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="left">
+  <a href="https://github.com/ysskrishna">Author's GitHub</a> •
+  <a href="https://linkedin.com/in/ysskrishna">Author's LinkedIn</a> •
+  <a href="https://ysskrishna.space">Author's site</a> •
+  <a href="https://pypi.org/project/dbconvert/">Package on PyPI</a> •
+  <a href="https://github.com/ysskrishna/dbconvert/issues">Report Issues</a>
+</p>
