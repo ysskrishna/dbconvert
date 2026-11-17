@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- The CLI and GUI no longer crash with `pyproject.toml not found` when the current directory does not contain that file. An installed copy reads its version from package metadata.
+
 ## [1.2.0] - 2025-05-31
 
 ### Added
